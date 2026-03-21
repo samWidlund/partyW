@@ -11,7 +11,7 @@ export function FinalScreen({ teams, onRestart }: FinalScreenProps) {
 
   return (
     <div className="final-screen">
-      <h1>Spelet är Slut!</h1>
+      <h1 className="app-title">brainstorm</h1>
 
       <div className="winner-section">
         <span className="winner-label">Vinnare</span>

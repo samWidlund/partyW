@@ -23,12 +23,21 @@ export function ScoringScreen({ teams, word, onSubmit }: ScoringScreenProps) {
 
   return (
     <div className="scoring-screen">
+      <h1 className="app-title">brainstorm</h1>
+      
+      <div className="ai-badge">
+        <svg className="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/>
+        </svg>
+        <span>AI-genererat</span>
+      </div>
+
       <div className="word-reveal">
         <span className="word-label">Ordet var:</span>
         <span className="word-value">{word}</span>
       </div>
 
-      <h2>Ange Poäng</h2>
+      <h2 className="screen-subtitle">Ange Poäng</h2>
 
       <div className="scores-list">
         {teams.map((team) => (

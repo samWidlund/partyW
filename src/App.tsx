@@ -115,6 +115,13 @@ function App() {
   return (
     <>
       <section id="center">
+        <div className="ai-badge">
+          <svg className="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/>
+          </svg>
+          <span>AI-genererat</span>
+        </div>
+
         <div className="scores-display">
           {teams.map((team) => (
             <div key={team.id} className="team-score">
@@ -136,7 +143,7 @@ function App() {
           </>
         ) : (
           <div className="generate-section">
-            <h1>brainstorm</h1>
+            <h1 className="app-title">brainstorm</h1>
             <input
               type="number"
               className="timer-input"

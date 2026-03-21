@@ -35,7 +35,16 @@ export function SetupScreen({ onStart, isLoading }: SetupScreenProps) {
 
   return (
     <div className="setup-screen">
-      <h1>Skapa Lag</h1>
+      <h1 className="app-title">brainstorm</h1>
+      
+      <div className="ai-badge">
+        <svg className="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/>
+        </svg>
+        <span>AI-genererat</span>
+      </div>
+
+      <h2 className="screen-subtitle">Skapa Lag</h2>
       <p className="setup-subtitle">Minst 2 lag</p>
 
       <div className="category-input-wrapper">
