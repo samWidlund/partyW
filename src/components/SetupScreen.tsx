@@ -2,14 +2,16 @@ import { useState } from 'react'
 import type { Team } from '../types/game'
 
 interface SetupScreenProps {
-  onStart: (teams: Team[]) => void
+  onStart: (teams: Team[], category: string) => void
+  isLoading?: boolean
 }
 
-export function SetupScreen({ onStart }: SetupScreenProps) {
+export function SetupScreen({ onStart, isLoading }: SetupScreenProps) {
   const [teams, setTeams] = useState<Team[]>([
     { id: '1', name: '', score: 0 },
     { id: '2', name: '', score: 0 },
   ])
+  const [category, setCategory] = useState<string>('')
 
   const addTeam = () => {
     setTeams([...teams, { id: crypto.randomUUID(), name: '', score: 0 }])
@@ -28,13 +30,23 @@ export function SetupScreen({ onStart }: SetupScreenProps) {
 
   const handleStart = () => {
     if (!canStart) return
-    onStart(teams)
+    onStart(teams, category.trim())
   }
 
   return (
     <div className="setup-screen">
-      <h1>Setup Teams</h1>
-      <p className="setup-subtitle">Minimum 2 teams</p>
+      <h1>Skapa Lag</h1>
+      <p className="setup-subtitle">Minst 2 lag</p>
+
+      <div className="category-input-wrapper">
+        <input
+          type="text"
+          className="category-input"
+          placeholder="Kategori (valfritt)"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
+      </div>
 
       <div className="teams-list">
         {teams.map((team, index) => (
@@ -43,7 +55,7 @@ export function SetupScreen({ onStart }: SetupScreenProps) {
             <input
               type="text"
               className="team-name-input"
-              placeholder={`Team ${index + 1}`}
+              placeholder={`Lag ${index + 1}`}
               value={team.name}
               onChange={(e) => updateTeamName(team.id, e.target.value)}
             />
@@ -60,15 +72,15 @@ export function SetupScreen({ onStart }: SetupScreenProps) {
       </div>
 
       <button className="add-team-button" onClick={addTeam}>
-        + Add Team
+        + Lägg till lag
       </button>
 
       <button
         className="start-button"
         onClick={handleStart}
-        disabled={!canStart}
+        disabled={!canStart || isLoading}
       >
-        Start Game
+        {isLoading ? 'Laddar ord...' : 'Starta Spelet'}
       </button>
     </div>
   )

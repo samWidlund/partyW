@@ -11,16 +11,16 @@ export function FinalScreen({ teams, onRestart }: FinalScreenProps) {
 
   return (
     <div className="final-screen">
-      <h1>Game Over!</h1>
+      <h1>Spelet är Slut!</h1>
 
       <div className="winner-section">
-        <span className="winner-label">Winner</span>
+        <span className="winner-label">Vinnare</span>
         <span className="winner-name">{winner.name}</span>
-        <span className="winner-score">{winner.score} points</span>
+        <span className="winner-score">{winner.score} poäng</span>
       </div>
 
       <div className="final-scores">
-        <h2>Final Scores</h2>
+        <h2>Slutresultat</h2>
         {sortedTeams.map((team, index) => (
           <div
             key={team.id}
@@ -34,7 +34,7 @@ export function FinalScreen({ teams, onRestart }: FinalScreenProps) {
       </div>
 
       <button className="restart-button" onClick={onRestart}>
-        New Game
+        Nytt Spel
       </button>
     </div>
   )

@@ -24,11 +24,11 @@ export function ScoringScreen({ teams, word, onSubmit }: ScoringScreenProps) {
   return (
     <div className="scoring-screen">
       <div className="word-reveal">
-        <span className="word-label">Word was:</span>
+        <span className="word-label">Ordet var:</span>
         <span className="word-value">{word}</span>
       </div>
 
-      <h2>Enter Points</h2>
+      <h2>Ange Poäng</h2>
 
       <div className="scores-list">
         {teams.map((team) => (
@@ -46,7 +46,7 @@ export function ScoringScreen({ teams, word, onSubmit }: ScoringScreenProps) {
       </div>
 
       <button className="submit-scores-button" onClick={handleSubmit}>
-        Submit Scores
+        Skicka Poäng
       </button>
     </div>
   )

@@ -159,6 +159,24 @@
   margin-bottom: 1.5rem;
 }
 
+.category-input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.category-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.category-input:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
 .teams-list {
   display: flex;
   flex-direction: column;

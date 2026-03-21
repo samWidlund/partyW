@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react'
-import { getRandomWord } from './data/words'
 import { Timer } from './components/Timer'
 import { SetupScreen } from './components/SetupScreen'
 import { ScoringScreen } from './components/ScoringScreen'
 import { FinalScreen } from './components/FinalScreen'
 import { playAlarm } from './utils/sound'
+import { wordGenerator } from './utils/api'
 import type { Team, GamePhase } from './types/game'
 import './App.css'
 
@@ -16,16 +16,30 @@ function App() {
   const [word, setWord] = useState<string>('')
   const [timeRemaining, setTimeRemaining] = useState<number>(DEFAULT_TIME)
   const [timerInput, setTimerInput] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const intervalRef = useRef<number | null>(null)
 
-  const startGame = (selectedTeams: Team[]) => {
+  const startGame = async (selectedTeams: Team[], category: string) => {
+    setIsLoading(true)
+    await wordGenerator.prefetch(50, category)
     setTeams(selectedTeams)
     setPhase('playing')
+    setIsLoading(false)
   }
 
   const generateWord = () => {
+    if (wordGenerator.shouldRefill()) {
+      wordGenerator.refill()
+    }
+
+    const newWord = wordGenerator.getWord()
+    if (!newWord) {
+      console.warn('No words available')
+      return
+    }
+
     const seconds = timerInput ? parseInt(timerInput, 10) : DEFAULT_TIME
-    setWord(getRandomWord())
+    setWord(newWord)
     setTimeRemaining(seconds)
     setPhase('playing')
 
@@ -77,7 +91,7 @@ function App() {
   if (phase === 'setup') {
     return (
       <section id="center">
-        <SetupScreen onStart={startGame} />
+        <SetupScreen onStart={startGame} isLoading={isLoading} />
       </section>
     )
   }
@@ -117,7 +131,7 @@ function App() {
             </div>
             <Timer seconds={timeRemaining} />
             <button className="stop-button" onClick={stopTimer}>
-              Stop
+              Stopp
             </button>
           </>
         ) : (
@@ -131,13 +145,13 @@ function App() {
               onChange={(e) => setTimerInput(e.target.value)}
             />
             <button className="generate-button" onClick={generateWord}>
-              Generate Word
+              Generera Ord
             </button>
           </div>
         )}
 
         <button className="end-game-button" onClick={() => setPhase('final')}>
-          End Game
+          Avsluta Spelet
         </button>
       </section>
     </>
