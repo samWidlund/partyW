@@ -9,11 +9,13 @@ function App() {
   const [word, setWord] = useState<string>('')
   const [timeRemaining, setTimeRemaining] = useState<number>(DEFAULT_TIME)
   const [isRoundActive, setIsRoundActive] = useState<boolean>(false)
+  const [timerInput, setTimerInput] = useState<string>('')
   const intervalRef = useRef<number | null>(null)
 
   const generateWord = () => {
+    const seconds = timerInput ? parseInt(timerInput, 10) : DEFAULT_TIME
     setWord(getRandomWord())
-    setTimeRemaining(DEFAULT_TIME)
+    setTimeRemaining(seconds)
     setIsRoundActive(true)
   }
 
@@ -57,6 +59,13 @@ function App() {
         ) : (
           <div className="generate-section">
             <h1>partyW</h1>
+            <input
+              type="number"
+              className="timer-input"
+              placeholder={String(DEFAULT_TIME)}
+              value={timerInput}
+              onChange={(e) => setTimerInput(e.target.value)}
+            />
             <button className="generate-button" onClick={generateWord}>
               Generate Word
             </button>
