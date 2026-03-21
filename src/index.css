@@ -549,3 +549,78 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6);
 }
+
+@media (max-width: 600px) {
+  .generate-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .word {
+    font-size: 3rem;
+  }
+
+  .timer-value {
+    font-size: 3.5rem;
+  }
+
+  .setup-screen,
+  .scoring-screen,
+  .final-screen {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .scores-display {
+    gap: 0.75rem;
+  }
+
+  .team-score {
+    padding: 0.75rem 1rem;
+    min-width: 90px;
+  }
+
+  .team-score .score-value {
+    font-size: 1.75rem;
+  }
+
+  .team-score .team-name {
+    font-size: 0.8rem;
+  }
+
+  #center {
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .generate-section h1 {
+    font-size: 2rem;
+  }
+
+  .word {
+    font-size: 2.5rem;
+  }
+
+  .timer-value {
+    font-size: 3rem;
+  }
+
+  .scores-display {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-score {
+    width: 100%;
+    max-width: 200px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .setup-screen,
+  .scoring-screen,
+  .final-screen {
+    padding: 1rem;
+  }
+}
