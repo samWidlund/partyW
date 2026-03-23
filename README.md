@@ -16,9 +16,8 @@
 ## Preview
 
 <div align="center">
-  <img src="public/landingpage.png" alt="Landing page" width="100%" style="border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
-  <br /><br />
-  <img src="public/game.png" alt="Game" width="100%" style="border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
+  <img src="public/landingpage.png" alt="Landing page" height="250" style="border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
+  <img src="public/game.png" alt="Game" height="250" style="border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);" />
 </div>
 
 ---
