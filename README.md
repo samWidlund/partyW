@@ -66,7 +66,7 @@ VITE_GROQ_API=your_api_key_here
 
 Get a free API key at [console.groq.com](https://console.groq.com).
 
-> **Note:** If no API key is configured, a fallback local list of Swedish words will be used.
+> **Note:** If the API fails to connect, a fallback local list of Swedish words will be used.
 
 ---
 
