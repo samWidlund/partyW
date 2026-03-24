@@ -1,5 +1,3 @@
-# brainstorm
-
 <p align="center">
   <h1> Swedish AI-powered word association game</h1>
   
