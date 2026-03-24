@@ -18,6 +18,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   background: var(--background);
@@ -26,8 +32,11 @@ body {
     radial-gradient(ellipse at bottom right, #1b3a4b 0%, transparent 50%),
     radial-gradient(ellipse at bottom left, #3d1b2e 0%, transparent 50%);
   background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: var(--text);
-  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
 }
 
 /* Hide number input arrows */
