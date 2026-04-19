@@ -4,6 +4,7 @@ import { SetupScreen } from './components/SetupScreen'
 import { ScoringScreen } from './components/ScoringScreen'
 import { FinalScreen } from './components/FinalScreen'
 import { MenuScreen } from './components/MenuScreen'
+import { CharaderScreen } from './components/CharaderScreen'
 import { ApiStatus } from './components/ApiStatus'
 import { playAlarm } from './utils/sound'
 import { wordGenerator } from './utils/api'
@@ -30,7 +31,9 @@ function App() {
     }
     setTeams(selectedTeams)
     setPhase('playing')
-    setIsLoading(false)
+    if (gameType === 'brainrot') {
+      setIsLoading(false)
+    }
   }
 
   const handleSelectGame = (type: GameType) => {
@@ -110,7 +113,7 @@ function App() {
   if (phase === 'setup') {
     return (
       <section id="center">
-        <SetupScreen onStart={startGame} isLoading={isLoading} isApiConnected={isApiConnected} />
+        <SetupScreen onStart={startGame} isLoading={isLoading} isApiConnected={isApiConnected} gameType={gameType!} />
       </section>
     )
   }
@@ -131,51 +134,59 @@ function App() {
     )
   }
 
-  return (
-    <>
-      <section id="center">
-        <ApiStatus isConnected={isApiConnected} />
+  if (phase === 'playing' && gameType === 'brainrot') {
+    return (
+      <>
+        <section id="center">
+          <ApiStatus isConnected={isApiConnected} />
 
-        <div className="scores-display">
-          {teams.map((team) => (
-            <div key={team.id} className="team-score">
-              <span className="team-name">{team.name}</span>
-              <span className="score-value">{team.score}</span>
-            </div>
-          ))}
-        </div>
-
-        {word && phase === 'playing' ? (
-          <>
-            <div className="word-display">
-              <h1 className="word">{word}</h1>
-            </div>
-            <Timer seconds={timeRemaining} />
-            <button className="stop-button" onClick={stopTimer}>
-              Stopp
-            </button>
-          </>
-        ) : (
-          <div className="generate-section">
-            <h1 className="app-title">brainstorm</h1>
-            <input
-              type="number"
-              className="timer-input"
-              placeholder={String(DEFAULT_TIME)}
-              value={timerInput}
-              onChange={(e) => setTimerInput(e.target.value)}
-            />
-            <button className="generate-button" onClick={generateWord}>
-              Generera Ord
-            </button>
+          <div className="scores-display">
+            {teams.map((team) => (
+              <div key={team.id} className="team-score">
+                <span className="team-name">{team.name}</span>
+                <span className="score-value">{team.score}</span>
+              </div>
+            ))}
           </div>
-        )}
 
-        <button className="end-game-button" onClick={() => setPhase('final')}>
-          Avsluta Spelet
-        </button>
-      </section>
-    </>
+          {word ? (
+            <>
+              <div className="word-display">
+                <h1 className="word">{word}</h1>
+              </div>
+              <Timer seconds={timeRemaining} />
+              <button className="stop-button" onClick={stopTimer}>
+                Stopp
+              </button>
+            </>
+          ) : (
+            <div className="generate-section">
+              <h1 className="app-title">brainstorm</h1>
+              <input
+                type="number"
+                className="timer-input"
+                placeholder={String(DEFAULT_TIME)}
+                value={timerInput}
+                onChange={(e) => setTimerInput(e.target.value)}
+              />
+              <button className="generate-button" onClick={generateWord}>
+                Generera Ord
+              </button>
+            </div>
+          )}
+
+          <button className="end-game-button" onClick={() => setPhase('final')}>
+            Avsluta Spelet
+          </button>
+        </section>
+      </>
+    )
+  }
+
+  return (
+    <section id="center">
+      <CharaderScreen />
+    </section>
   )
 }
 

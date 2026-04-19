@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import type { Team } from '../types/game'
+import type { Team, GameType } from '../types/game'
 import { ApiStatus } from './ApiStatus'
 
 interface SetupScreenProps {
   onStart: (teams: Team[], category: string) => void
   isLoading?: boolean
   isApiConnected: boolean
+  gameType: GameType
 }
 
-export function SetupScreen({ onStart, isLoading, isApiConnected }: SetupScreenProps) {
+export function SetupScreen({ onStart, isLoading, isApiConnected, gameType }: SetupScreenProps) {
   const [teams, setTeams] = useState<Team[]>([
     { id: '1', name: '', score: 0 },
     { id: '2', name: '', score: 0 },
@@ -38,7 +39,7 @@ export function SetupScreen({ onStart, isLoading, isApiConnected }: SetupScreenP
 
   return (
     <div className="setup-screen">
-      <h1 className="app-title">brainstorm</h1>
+      <h1 className="app-title">{gameType === 'brainrot' ? 'brainstorm' : 'charader'}</h1>
       
       <ApiStatus isConnected={isApiConnected} />
 
